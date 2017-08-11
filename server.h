@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/11 09:54:42 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/08/11 10:23:51 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/08/11 16:11:36 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 #define TRUE 1
 #define FALSE 0
 #define PORT 8888
+#define MAX_CLIENTS 3
 
 void	init();
 #endif
