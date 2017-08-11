@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/11 14:12:00 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/08/11 16:13:30 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/08/11 23:38:25 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,34 @@ void	add_new_client(int *new_socket,int **cs)
 	}
 }
 
+void	check_io_operation(int **clients_list, int *sd, fd_set *readfds, int i)
+{
+	int	valread;
+	int	*client_socket;
+	char	buff[1024];
+
+	valread = 0;
+	client_socket = (*clients_list);
+	while (i < MAX_CLIENTS)
+	{
+		*sd = client_socket[i];
+		if (FD_ISSET(*sd, readfds))
+		{
+			if ((valread = read(*sd, buff, 1024)) == 0)
+			{
+				close(*sd);
+				client_socket[i] = 0;
+			}
+		}
+		else
+		{
+			buff[valread] = '\0';
+			send(*sd, buff, strlen(buff), 0);
+		}
+		i++;
+	}
+}
+
 int	main(int argc, char *argv[])
 {
 	int	opt = TRUE;
@@ -139,6 +167,8 @@ int	main(int argc, char *argv[])
 
 			add_new_client(&new_socket, &client_socket);	
 		}
+		else
+		check_io_operation(&client_socket, &sd, &readfds, 0);
 	}
 	return (0);
 }
