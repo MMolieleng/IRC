@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/11 14:12:00 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/08/11 23:38:25 by                  ###   ########.fr       */
+/*   Updated: 2017/08/12 08:11:23 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ int	main(int argc, char *argv[])
 	client_socket = init_clients();
 	master_socket = init_master_socket(opt);
 	address = (init_sockaddr_in());
-
 	if (bind(master_socket, (struct sockaddr *)&address, sizeof(address)) < 0)
 	{
 		printf("Bind Error");
